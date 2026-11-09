@@ -1,0 +1,8 @@
+cadquery>=2.4
+numpy
+scipy
+trimesh
+pyvista
+pytest
+pytest-json-report
+ruff
