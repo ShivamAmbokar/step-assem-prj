@@ -3,7 +3,7 @@
 | Done | ID | Kind | Step | Gate(s) | Title |
 |---|---|---|---|---|---|
 | [ ] | [H0](H0.md) | human | — | H0 | Create repo, Claude Project, upload the plan |
-| [ ] | [S00.1](S00.1.md) | agent | S00 | G0.1–G0.4 | Skeleton, requirements, config, conftest, run_task/verify_h tooling |
+| [x] | [S00.1](S00.1.md) | agent | S00 | G0.1–G0.4 | Skeleton, requirements, config, conftest, run_task/verify_h tooling |
 | [ ] | [H1](H1.md) | human | — | H1 | Real data on the laptop + environment check |
 | [ ] | [S00.2](S00.2.md) | agent | S00 | G0.5 → gate-s00 | check tool, final_report skeleton, manifest validation; close G0 |
 | [ ] | [S01.1](S01.1.md) | agent | S01 | G1.10 (part) | Spec schema + frozen specs F01–F11 |
