@@ -1,0 +1,947 @@
+{
+ "order": [
+  "H0",
+  "S00.1",
+  "H1",
+  "S00.2",
+  "S01.1",
+  "S01.2",
+  "S01.3",
+  "S01.4",
+  "S01.5",
+  "S01.6",
+  "S02.1",
+  "S02.2",
+  "S03.1",
+  "S04.1",
+  "S04.2",
+  "S04.3",
+  "S04.4",
+  "S04.5",
+  "S04.6",
+  "S04.7",
+  "H2",
+  "S05.1",
+  "S06.1",
+  "S07.1",
+  "S07.2",
+  "S08.1",
+  "S09.1",
+  "S10.1",
+  "S10.2",
+  "S11.1",
+  "S11.2",
+  "S11.3",
+  "S11.4",
+  "S12.1",
+  "S13.1",
+  "S14.1",
+  "S15.1",
+  "S15.2",
+  "S15.3",
+  "S16.1",
+  "S16.2",
+  "S17.1",
+  "S17.2",
+  "S17.3",
+  "S18.1",
+  "S19.1",
+  "S19.2",
+  "H3",
+  "S20.1",
+  "S20.2",
+  "S20.3",
+  "S20.4",
+  "H4"
+ ],
+ "tasks": {
+  "H0": {
+   "kind": "human",
+   "verify_h": null,
+   "next": "S00.1"
+  },
+  "S00.1": {
+   "kind": "agent",
+   "step": "S00",
+   "gates": "G0.1\u2013G0.4",
+   "test_file": "tests/test_s00_env.py",
+   "tests": [
+    "test_g00_1_imports_and_versions",
+    "test_g00_2_occ_box_roundtrip",
+    "test_g00_3_run_task_verdicts",
+    "test_g00_4_verify_h0",
+    "test_g00_0_config_overrides"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "H1"
+  },
+  "H1": {
+   "kind": "human",
+   "verify_h": "H1",
+   "next": "S00.2"
+  },
+  "S00.2": {
+   "kind": "agent",
+   "step": "S00",
+   "gates": "G0.5 \u2192 gate-s00",
+   "test_file": "tests/test_s00_env.py",
+   "tests": [
+    "test_g00_5_ruff_clean",
+    "test_g00_6_manifest_valid",
+    "test_g00_7_final_report_skeleton"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s00",
+   "next": "S01.1"
+  },
+  "S01.1": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "G1.10 (part)",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_10a_specs_f01_f11_valid"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S01.2"
+  },
+  "S01.2": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "G1.10",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_10_all_specs_valid"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S01.3"
+  },
+  "S01.3": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "(G1 tooling)",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_3a_shared_definitions",
+    "test_g01_3b_green_faces_roundtrip",
+    "test_g01_3c_units_and_schema"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S01.4"
+  },
+  "S01.4": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "G1.1\u2013G1.9 (F01\u2013F11)",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_1to9_f01_f11"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S01.5"
+  },
+  "S01.5": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "G1 (F12\u2013F20)",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_1to9_f12_f20"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S01.6"
+  },
+  "S01.6": {
+   "kind": "agent",
+   "step": "S01",
+   "gates": "G1 \u2192 gate-s01",
+   "test_file": "tests/test_s01_fixtures.py",
+   "tests": [
+    "test_g01_1to9_f21_f33",
+    "test_g01_11_counts_all"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s01",
+   "next": "S02.1"
+  },
+  "S02.1": {
+   "kind": "agent",
+   "step": "S02",
+   "gates": "G2.1\u2013G2.4",
+   "test_file": "tests/test_s02_loader.py",
+   "tests": [
+    "test_g02_1_counts",
+    "test_g02_2_pinion_placement",
+    "test_g02_3_nested_grid",
+    "test_g02_4_inch_equals_mm",
+    "test_g02_8_warnings"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S02.2"
+  },
+  "S02.2": {
+   "kind": "agent",
+   "step": "S02",
+   "gates": "G2.5\u2013G2.7 \u2192 gate-s02",
+   "test_file": "tests/test_s02_loader.py",
+   "tests": [
+    "test_g02_5_gid_roundtrip",
+    "test_g02_6_determinism",
+    "test_g02_7_part_ids_match_builder"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s02",
+   "next": "S03.1"
+  },
+  "S03.1": {
+   "kind": "agent",
+   "step": "S03",
+   "gates": "G3 \u2192 gate-s03",
+   "test_file": "tests/test_s03_selection.py",
+   "tests": [
+    "test_g03_1_colour_equals_ids",
+    "test_g03_2_sizes",
+    "test_g03_3_invalid_ids",
+    "test_g03_4_torus",
+    "test_g03_5_permutation",
+    "test_g03_6_near_green"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s03",
+   "next": "S04.1"
+  },
+  "S04.1": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "G4.4",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [
+    "test_g04_4_measure_fixtures",
+    "test_g04_0_inspect_counts"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S04.2"
+  },
+  "S04.2": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "G4.3",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [
+    "test_g04_3_render_nonblank_and_highlight"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S04.3"
+  },
+  "S04.3": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "G4.2",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [
+    "test_g04_2_crop_split_extract",
+    "test_real_g04_2_extract_key"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": true,
+   "tag": null,
+   "next": "S04.4"
+  },
+  "S04.4": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "G4.1",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [],
+   "commands": [
+    "python -m fitfinder inspect --step $FITFINDER_DATA/WM290V_RedrawStart.stp --out reports/S04.4/inventory_wm290v.md",
+    "python -m fitfinder inspect-faces --step $FITFINDER_DATA/key_part.step --occurrence '*' --out reports/S04.4/key_faces.md"
+   ],
+   "artifacts": [
+    "reports/S04.4/inventory_wm290v.md",
+    "reports/S04.4/key_faces.md"
+   ],
+   "allow_skip": true,
+   "real": true,
+   "tag": null,
+   "next": "S04.5"
+  },
+  "S04.5": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "(G4.5 prep)",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": true,
+   "real": false,
+   "tag": null,
+   "next": "S04.6"
+  },
+  "S04.6": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "(G4.5 part)",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [
+    "test_g04_5a_gt_r1_schema"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": true,
+   "real": false,
+   "tag": null,
+   "next": "S04.7"
+  },
+  "S04.7": {
+   "kind": "agent",
+   "step": "S04",
+   "gates": "G4.5 \u2192 gate-s04",
+   "test_file": "tests/test_s04_tools.py",
+   "tests": [
+    "test_g04_5_gt_all_schema"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": true,
+   "real": false,
+   "tag": "gate-s04",
+   "next": "H2"
+  },
+  "H2": {
+   "kind": "human",
+   "verify_h": "H2",
+   "next": "S05.1"
+  },
+  "S05.1": {
+   "kind": "agent",
+   "step": "S05",
+   "gates": "G5 \u2192 gate-s05",
+   "test_file": "tests/test_s05_normalize.py",
+   "tests": [
+    "test_g05_1_volume",
+    "test_g05_2_f12_split",
+    "test_g05_3_identity",
+    "test_g05_4_cover",
+    "test_g05_5_faceted_planes"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s05",
+   "next": "S06.1"
+  },
+  "S06.1": {
+   "kind": "agent",
+   "step": "S06",
+   "gates": "G6 \u2192 gate-s06",
+   "test_file": "tests/test_s06_descriptors.py",
+   "tests": [
+    "test_g06_1_outward",
+    "test_g06_2_bspline",
+    "test_g06_3_convexity",
+    "test_g06_4_areas",
+    "test_g06_5_cone",
+    "test_g06_6_sphere",
+    "test_g06_7_cache"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s06",
+   "next": "S07.1"
+  },
+  "S07.1": {
+   "kind": "agent",
+   "step": "S07",
+   "gates": "G7.1\u2013G7.3",
+   "test_file": "tests/test_s07_fingerprint.py",
+   "tests": [
+    "test_g07_0_relations_pure",
+    "test_g07_1_key",
+    "test_g07_3_jaw"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S07.2"
+  },
+  "S07.2": {
+   "kind": "agent",
+   "step": "S07",
+   "gates": "G7 \u2192 gate-s07",
+   "test_file": "tests/test_s07_fingerprint.py",
+   "tests": [
+    "test_g07_0b_dof_pure",
+    "test_g07_2_peg",
+    "test_g07_4_joints",
+    "test_g07_5_flood"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s07",
+   "next": "S08.1"
+  },
+  "S08.1": {
+   "kind": "agent",
+   "step": "S08",
+   "gates": "G8 \u2192 gate-s08",
+   "test_file": "tests/test_s08_candidates.py",
+   "tests": [
+    "test_g08_1_recall",
+    "test_g08_2_f11",
+    "test_g08_3_f08",
+    "test_g08_4_convexity",
+    "test_g08_5_faceted_warning"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s08",
+   "next": "S09.1"
+  },
+  "S09.1": {
+   "kind": "agent",
+   "step": "S09",
+   "gates": "G9 \u2192 gate-s09",
+   "test_file": "tests/test_s09_search.py",
+   "tests": [
+    "test_g09_0_search_pure",
+    "test_g09_1_f01",
+    "test_g09_2_to_8_counts",
+    "test_g09_9_f20_time"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s09",
+   "next": "S10.1"
+  },
+  "S10.1": {
+   "kind": "agent",
+   "step": "S10",
+   "gates": "G10.2\u2013G10.4, G10.7\u2013G10.9",
+   "test_file": "tests/test_s10_pose.py",
+   "tests": [
+    "test_g10_0_kabsch_pure",
+    "test_g10_2_mirror",
+    "test_g10_3_f11",
+    "test_g10_4_f02_f25",
+    "test_g10_7_to_9_sizes"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S10.2"
+  },
+  "S10.2": {
+   "kind": "agent",
+   "step": "S10",
+   "gates": "G10 \u2192 gate-s10",
+   "test_file": "tests/test_s10_pose.py",
+   "tests": [
+    "test_g10_0b_lstsq_pure",
+    "test_g10_1_f01",
+    "test_g10_5_f06",
+    "test_g10_6_f08"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s10",
+   "next": "S11.1"
+  },
+  "S11.1": {
+   "kind": "agent",
+   "step": "S11",
+   "gates": "G11.10 + overlap",
+   "test_file": "tests/test_s11_verify.py",
+   "tests": [
+    "test_g11_10_settle",
+    "test_g11_0_overlap_values"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S11.2"
+  },
+  "S11.2": {
+   "kind": "agent",
+   "step": "S11",
+   "gates": "G11.1, G11.3, F23, F29",
+   "test_file": "tests/test_s11_verify.py",
+   "tests": [
+    "test_g11_1_reversed_key",
+    "test_g11_3_inward",
+    "test_g11_11_thin_cover_f23",
+    "test_g11_12_non_solid_f29"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S11.3"
+  },
+  "S11.3": {
+   "kind": "agent",
+   "step": "S11",
+   "gates": "G11.2\u2013G11.9 (classes), F25",
+   "test_file": "tests/test_s11_verify.py",
+   "tests": [
+    "test_g11_0_play_pure",
+    "test_g11_2_f01",
+    "test_g11_4_vice",
+    "test_g11_5_press",
+    "test_g11_6_taper_ball",
+    "test_g11_8_keyed_dshaft",
+    "test_g11_13_thresholds_f25"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S11.4"
+  },
+  "S11.4": {
+   "kind": "agent",
+   "step": "S11",
+   "gates": "G11 \u2192 gate-s11",
+   "test_file": "tests/test_s11_verify.py",
+   "tests": [
+    "test_g11_2b_f01_range",
+    "test_g11_4b_vice_range",
+    "test_g11_7_ball_orientation",
+    "test_g11_14_reachability"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s11",
+   "next": "S12.1"
+  },
+  "S12.1": {
+   "kind": "agent",
+   "step": "S12",
+   "gates": "G12 \u2192 gate-s12",
+   "test_file": "tests/test_s12_identify.py",
+   "tests": [
+    "test_g12_1",
+    "test_g12_2_f19_f21",
+    "test_g12_3_f26_f27_f28",
+    "test_g12_4_not_found",
+    "test_g12_5_ambiguous"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s12",
+   "next": "S13.1"
+  },
+  "S13.1": {
+   "kind": "agent",
+   "step": "S13",
+   "gates": "G13 \u2192 gate-s13",
+   "test_file": "tests/test_s13_mode_a.py",
+   "tests": [
+    "test_g13_1_f04",
+    "test_g13_2_f05_f15_f18a",
+    "test_g13_3_none_and_f26",
+    "test_g13_6_partial"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s13",
+   "next": "S14.1"
+  },
+  "S14.1": {
+   "kind": "agent",
+   "step": "S14",
+   "gates": "G14 \u2192 gate-s14",
+   "test_file": "tests/test_s14_multipart.py",
+   "tests": [
+    "test_g14_1_f18",
+    "test_g14_2_unchanged",
+    "test_g14_3_budget"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s14",
+   "next": "S15.1"
+  },
+  "S15.1": {
+   "kind": "agent",
+   "step": "S15",
+   "gates": "(G15 part)",
+   "test_file": "tests/test_s15_results.py",
+   "tests": [
+    "test_g15_0_results_pure"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S15.2"
+  },
+  "S15.2": {
+   "kind": "agent",
+   "step": "S15",
+   "gates": "(G15 part)",
+   "test_file": "tests/test_s15_results.py",
+   "tests": [
+    "test_g15_f01",
+    "test_g15_f02",
+    "test_g15_f03",
+    "test_g15_f04",
+    "test_g15_f05",
+    "test_g15_f06",
+    "test_g15_f07",
+    "test_g15_f08",
+    "test_g15_f09",
+    "test_g15_f10",
+    "test_g15_f11"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S15.3"
+  },
+  "S15.3": {
+   "kind": "agent",
+   "step": "S15",
+   "gates": "G15 \u2192 gate-s15",
+   "test_file": "tests/test_s15_results.py",
+   "tests": [
+    "test_g15_f12",
+    "test_g15_f13",
+    "test_g15_f14",
+    "test_g15_f15",
+    "test_g15_f16",
+    "test_g15_f17",
+    "test_g15_f18",
+    "test_g15_f18a",
+    "test_g15_f19",
+    "test_g15_f20",
+    "test_g15_f21",
+    "test_g15_f22a",
+    "test_g15_f22b",
+    "test_g15_f22c",
+    "test_g15_f23",
+    "test_g15_f24",
+    "test_g15_f25",
+    "test_g15_f26",
+    "test_g15_f27",
+    "test_g15_f27_incl",
+    "test_g15_f28",
+    "test_g15_f29",
+    "test_g15_f30a",
+    "test_g15_f30b",
+    "test_g15_f31",
+    "test_g15_f32",
+    "test_g15_f33"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s15",
+   "next": "S16.1"
+  },
+  "S16.1": {
+   "kind": "agent",
+   "step": "S16",
+   "gates": "G16.1, G16.2, G16.5",
+   "test_file": "tests/test_s16_outputs.py",
+   "tests": [
+    "test_g16_1_glb",
+    "test_g16_2_sidecar",
+    "test_g16_5_split_faces"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S16.2"
+  },
+  "S16.2": {
+   "kind": "agent",
+   "step": "S16",
+   "gates": "G16 \u2192 gate-s16",
+   "test_file": "tests/test_s16_outputs.py",
+   "tests": [
+    "test_g16_3_renders",
+    "test_g16_4_csv",
+    "test_g16_6_viewer"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s16",
+   "next": "S17.1"
+  },
+  "S17.1": {
+   "kind": "agent",
+   "step": "S17",
+   "gates": "G17.1, G17.4",
+   "test_file": "tests/test_s17_e2e.py",
+   "tests": [
+    "test_g17_1_cli_all",
+    "test_g17_4_exit_codes"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S17.2"
+  },
+  "S17.2": {
+   "kind": "agent",
+   "step": "S17",
+   "gates": "G17.2",
+   "test_file": "tests/test_s17_e2e.py",
+   "tests": [
+    "test_g17_2_mr1",
+    "test_g17_2_mr2",
+    "test_g17_2_mr3",
+    "test_g17_2_mr4",
+    "test_g17_2_mr5",
+    "test_g17_2_mr6",
+    "test_g17_2_mr7",
+    "test_g17_2_mr8",
+    "test_g17_2_mr9",
+    "test_g17_2_mr10",
+    "test_g17_2_mr11"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S17.3"
+  },
+  "S17.3": {
+   "kind": "agent",
+   "step": "S17",
+   "gates": "G17 \u2192 gate-s17",
+   "test_file": "tests/test_s17_e2e.py",
+   "tests": [
+    "test_g17_3_determinism",
+    "test_g17_5_fuzz",
+    "test_g17_6_operational"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s17",
+   "next": "S18.1"
+  },
+  "S18.1": {
+   "kind": "agent",
+   "step": "S18",
+   "gates": "G18 \u2192 gate-s18",
+   "test_file": "tests/test_s18_perf.py",
+   "tests": [
+    "test_g18_1_f20_budget",
+    "test_real_g18_2_wm290v_budget",
+    "test_g18_3_parallel_equals_serial",
+    "test_g18_4_cache_corruption"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": true,
+   "tag": "gate-s18",
+   "next": "S19.1"
+  },
+  "S19.1": {
+   "kind": "agent",
+   "step": "S19",
+   "gates": "G19.1\u2013G19.4",
+   "test_file": "tests/test_s19_real.py",
+   "tests": [
+    "test_real_g19_1_recall",
+    "test_real_g19_2_precision",
+    "test_real_g19_3_fit_class"
+   ],
+   "commands": [],
+   "artifacts": [
+    "reports/S19.1/calibration.csv"
+   ],
+   "allow_skip": false,
+   "real": true,
+   "tag": null,
+   "next": "S19.2"
+  },
+  "S19.2": {
+   "kind": "agent",
+   "step": "S19",
+   "gates": "G19.5 \u2192 gate-s19",
+   "test_file": "tests/test_s19_real.py",
+   "tests": [
+    "test_g19_5_calibration_doc"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": "gate-s19",
+   "next": "H3"
+  },
+  "H3": {
+   "kind": "human",
+   "verify_h": "H3",
+   "next": "S20.1"
+  },
+  "S20.1": {
+   "kind": "agent",
+   "step": "S20",
+   "gates": "G20.3",
+   "test_file": "tests/test_s20_deliverables.py",
+   "tests": [
+    "test_g20_3_results_complete"
+   ],
+   "commands": [
+    "python -m fitfinder results --all --out results"
+   ],
+   "artifacts": [
+    "results"
+   ],
+   "allow_skip": false,
+   "real": true,
+   "tag": null,
+   "next": "S20.2"
+  },
+  "S20.2": {
+   "kind": "agent",
+   "step": "S20",
+   "gates": "G20.1",
+   "test_file": "tests/test_s20_deliverables.py",
+   "tests": [
+    "test_g20_1_readme_sections_and_quickstart"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S20.3"
+  },
+  "S20.3": {
+   "kind": "agent",
+   "step": "S20",
+   "gates": "G20.2",
+   "test_file": "tests/test_s20_deliverables.py",
+   "tests": [
+    "test_g20_2_writeup_sections_and_numbers"
+   ],
+   "commands": [],
+   "artifacts": [],
+   "allow_skip": false,
+   "real": false,
+   "tag": null,
+   "next": "S20.4"
+  },
+  "S20.4": {
+   "kind": "agent",
+   "step": "S20",
+   "gates": "G20 \u2192 gate-s20",
+   "test_file": "tests/test_s20_deliverables.py",
+   "tests": [
+    "test_g20_4_final_report_sections"
+   ],
+   "commands": [
+    "python tools/final_report.py"
+   ],
+   "artifacts": [
+    "reports/FINAL/report.md"
+   ],
+   "allow_skip": false,
+   "real": true,
+   "tag": "gate-s20",
+   "next": "H4"
+  },
+  "H4": {
+   "kind": "human",
+   "verify_h": "H4",
+   "next": "DONE"
+  }
+ }
+}
