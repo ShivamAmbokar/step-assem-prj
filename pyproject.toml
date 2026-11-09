@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fitfinder"
+version = "0.1.0"
+description = "Find where selected faces of a part fit or mate in a STEP assembly"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "cadquery>=2.4",
+    "numpy",
+    "scipy",
+    "trimesh",
+    "pyvista",
+]
+
+[project.scripts]
+fitfinder = "fitfinder.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["fitfinder*"]
+
+[tool.setuptools.package-data]
+fitfinder = ["schema/*.json"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [".venv", "fixtures/out", "out", "data/real"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "occ: needs OCP / cadquery (skipped when OCP cannot be imported)",
+    "real: needs the real assemblies under FITFINDER_DATA (skipped when unset or files are missing)",
+    "slow: long-running test (excluded from the regression suite)",
+]

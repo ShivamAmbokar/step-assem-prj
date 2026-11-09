@@ -1,11 +1,10 @@
-"""S00.1 gate tests: environment (G0.1, G0.2), run_task (G0.3), verify_h H0 (G0.4), config (G0.0)."""
+"""S00.1 gate tests: environment (G0.1, G0.2), run_task (G0.3), verify_h (G0.4), config (G0.0)."""
 from __future__ import annotations
 
 import importlib
 import json
 import sys
 import zipfile
-from pathlib import Path
 
 import pytest
 from helpers import (
@@ -73,6 +72,7 @@ FAILING = "def test_ok():\n    assert 1 + 1 == 3\n"
 SKIPPING = "import pytest\n\n\ndef test_ok():\n    pytest.skip('not available here')\n"
 PREV_OK = "def test_prev():\n    assert True\n"
 PREV_BAD = "def test_prev():\n    assert 'earlier' == 'broken'\n"
+QUICK = ("--no-regress",)  # cases that do not look at the regression suite or bookkeeping
 
 
 def _run_case(tmp_path, name, body, flags=(), prev=PREV_OK, **task):
@@ -133,15 +133,15 @@ def test_g00_3_run_task_verdicts(tmp_path):
     assert "| [ ] | [T1](T1.md)" in (root / "plan" / "TASKS" / "INDEX.md").read_text()
 
     # --- skipped test: FAIL unless the manifest allows it --------------------------------
-    _, proc, rep = _run_case(tmp_path, "skip_bad", SKIPPING)
+    _, proc, rep = _run_case(tmp_path, "skip_bad", SKIPPING, flags=QUICK)
     assert proc.returncode == 1 and rep["verdict"] == "FAIL"
     assert rep["task_tests"]["skipped"] == 1
-    _, proc, rep = _run_case(tmp_path, "skip_ok", SKIPPING, allow_skip=True)
+    _, proc, rep = _run_case(tmp_path, "skip_ok", SKIPPING, flags=QUICK, allow_skip=True)
     assert proc.returncode == 0 and rep["verdict"] == "PASS"
 
     # --- failing command ---------------------------------------------------------------
     _, proc, rep = _run_case(
-        tmp_path, "cmd_bad", PASSING, commands=['python -c "import sys; sys.exit(3)"']
+        tmp_path, "cmd_bad", PASSING, flags=QUICK, commands=['python -c "import sys; sys.exit(3)"']
     )
     assert proc.returncode == 1 and rep["verdict"] == "FAIL"
     assert rep["commands"][0]["exit"] == 3
@@ -149,19 +149,24 @@ def test_g00_3_run_task_verdicts(tmp_path):
     # --- command producing a required artifact: PASS and the artifact is copied -----------
     make = "import pathlib; pathlib.Path('made.txt').write_text('x')"
     root, proc, rep = _run_case(
-        tmp_path, "art_ok", PASSING, commands=[f'python -c "{make}"'], artifacts=["made.txt"]
+        tmp_path, "art_ok", PASSING, flags=QUICK,
+        commands=[f'python -c "{make}"'], artifacts=["made.txt"],
     )
     assert proc.returncode == 0 and rep["verdict"] == "PASS", proc.stdout
     assert rep["commands"][0]["exit"] == 0
     assert (root / "reports" / "T1" / "made.txt").read_text() == "x"
 
     # --- missing required artifact -------------------------------------------------------
-    _, proc, rep = _run_case(tmp_path, "art_missing", PASSING, artifacts=["out/never.txt"])
+    _, proc, rep = _run_case(
+        tmp_path, "art_missing", PASSING, flags=QUICK, artifacts=["out/never.txt"]
+    )
     assert proc.returncode == 1 and rep["verdict"] == "FAIL"
     assert any("never.txt" in reason for reason in rep["reasons"])
 
     # --- listed test does not exist ------------------------------------------------------
-    _, proc, rep = _run_case(tmp_path, "no_test", PASSING, tests=["test_does_not_exist"])
+    _, proc, rep = _run_case(
+        tmp_path, "no_test", PASSING, flags=QUICK, tests=["test_does_not_exist"]
+    )
     assert proc.returncode == 1 and rep["verdict"] == "FAIL"
     assert any("test_does_not_exist" in reason for reason in rep["reasons"])
 
